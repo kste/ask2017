@@ -28,83 +28,53 @@ int main(void)
     DWT_CTRL |= DWT_CTRL_CYCCNTENA;
     
     const uint8_t key[16] = {4,5,6,7,4,5,6,8,4,5,6,9,4,5,6,10};
-    uint8_t in[16] = {0,0,0,0,1,2,3,1};
+    uint8_t in[16] = {0,0,0,0,1,2,3,1,2,4,1,2,5,1,2,6};
     uint8_t out[16];
     
     uint8_t rk[(NUMBER_OF_ROUNDS+1)*8];
     char buffer[36];
 
     memcpy(rk, key, 16);
+    memset(rk,0,(NUMBER_OF_ROUNDS+1)*8);
 
     unsigned int oldcount = DWT_CYCCNT;
-    speck128_keyschedule(key, rk);
+    //speck128_keyschedule(key, rk);
     unsigned int cyclecount = DWT_CYCCNT-oldcount;
-
-/*
-    // Print all round keys
-    unsigned int i,j;
-    for(i=0;i<11*4;++i) {
-        sprintf(buffer, "rk[%2d]: ", i);
-        for(j=0;j<4;++j)
-            sprintf(buffer+2*j+8, "%02x", rk[i*4+j]);
-        send_USART_str(buffer);
-    }
-*/
-
-    sprintf(buffer, "cyc: %d", cyclecount); 
-    send_USART_str(buffer);
 
     oldcount = DWT_CYCCNT;
     speck128_encrypt(rk, in, out);
     cyclecount = DWT_CYCCNT-oldcount;
 
-    sprintf(buffer, "cyc: %d", cyclecount); 
+    sprintf(buffer, "Encryption cycles: %d", cyclecount); 
     send_USART_str(buffer);
     
-/*
-    // Print ciphertext
-    sprintf(buffer, "out: ");
-    send_USART_str(buffer);
-    for(i=0;i<16;++i)
-        sprintf(buffer+2*i, "%02x", out[i]);
-    send_USART_str(buffer);
-*/
 
-    memcpy(rk+160, key, 16);
+    // memcpy(rk+160, key, 16);
 
-    oldcount = DWT_CYCCNT;
-    speck128_keyschedule_dec(key, rk);
-    cyclecount = DWT_CYCCNT-oldcount;
+    // oldcount = DWT_CYCCNT;
+    // speck128_keyschedule_dec(key, rk);
+    // cyclecount = DWT_CYCCNT-oldcount;
 
-/*
-    // Print all decryption round keys
-    for(i=0;i<11*4;++i) {
-        sprintf(buffer, "rk[%2d]: ", i);
-        for(j=0;j<4;++j)
-            sprintf(buffer+2*j+8, "%02x", rk[i*4+j]);
-        send_USART_str(buffer);
-    }
-*/
 
-    sprintf(buffer, "cyc: %d", cyclecount); 
-    send_USART_str(buffer);
+    // // Print all decryption round keys
+    // for(i=0;i<11*4;++i) {
+    //     sprintf(buffer, "rk[%2d]: ", i);
+    //     for(j=0;j<4;++j)
+    //         sprintf(buffer+2*j+8, "%02x", rk[i*4+j]);
+    //     send_USART_str(buffer);
+    // }
 
-    oldcount = DWT_CYCCNT;
-    speck128_decrypt(rk, out, in);
-    cyclecount = DWT_CYCCNT-oldcount;
 
-    sprintf(buffer, "cyc: %d", cyclecount); 
-    send_USART_str(buffer);
+    // sprintf(buffer, "cyc: %d", cyclecount); 
+    // send_USART_str(buffer);
+
+    // oldcount = DWT_CYCCNT;
+    // speck128_decrypt(rk, out, in);
+    // cyclecount = DWT_CYCCNT-oldcount;
+
+    // sprintf(buffer, "cyc: %d", cyclecount); 
+    // send_USART_str(buffer);
     
-/*
-    // Print plaintext
-    sprintf(buffer, "in: ");
-    send_USART_str(buffer);
-    for(i=0;i<16;++i)
-        sprintf(buffer+2*i, "%02x", in[i]);
-    send_USART_str(buffer);
-*/
-
     while (1);
 
     return 0;

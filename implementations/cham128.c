@@ -8,10 +8,10 @@
 #define ALPHA 8
 #define BETA 3
 
-extern void speck64_keyschedule(const uint8_t *key, uint8_t *rk);
-extern void speck64_keyschedule_dec(const uint8_t *key, uint8_t *rk);
-extern void speck64_encrypt(const uint8_t *rk, const uint8_t *in, uint8_t *out);
-extern void speck64_decrypt(const uint8_t *rk, const uint8_t *in, uint8_t *out);
+extern void cham128_keyschedule(const uint8_t *key, uint8_t *rk);
+extern void cham128_keyschedule_dec(const uint8_t *key, uint8_t *rk);
+extern void cham128_encrypt(const uint8_t *rk, const uint8_t *in, uint8_t *out);
+extern void cham128_decrypt(const uint8_t *rk, const uint8_t *in, uint8_t *out);
 
 int main(void)
 {
@@ -28,21 +28,21 @@ int main(void)
     DWT_CTRL |= DWT_CTRL_CYCCNTENA;
     
     const uint8_t key[16] = {4,5,6,7,4,5,6,8,4,5,6,9,4,5,6,10};
-    uint8_t in[8] = {0,0,0,0,1,2,3,1};
-    uint8_t out[8];
+    uint8_t in[16] = {0,0,0,0,1,2,3,1,2,4,1,2,5,1,2,6};
+    uint8_t out[16];
     
-    uint8_t rk[(NUMBER_OF_ROUNDS+1)*4];
+    uint8_t rk[(NUMBER_OF_ROUNDS+1)*8];
     char buffer[36];
 
     memcpy(rk, key, 16);
-    memset(rk,5,(NUMBER_OF_ROUNDS+1)*4);
+    memset(rk,0,(NUMBER_OF_ROUNDS+1)*8);
 
     unsigned int oldcount = DWT_CYCCNT;
-    //speck64_keyschedule(key, rk);
+    //cham128_keyschedule(key, rk);
     unsigned int cyclecount = DWT_CYCCNT-oldcount;
 
     oldcount = DWT_CYCCNT;
-    speck64_encrypt(rk, in, out);
+    cham128_encrypt(rk, in, out);
     cyclecount = DWT_CYCCNT-oldcount;
 
     sprintf(buffer, "Encryption cycles: %d", cyclecount); 
@@ -52,7 +52,7 @@ int main(void)
     // memcpy(rk+160, key, 16);
 
     // oldcount = DWT_CYCCNT;
-    // speck64_keyschedule_dec(key, rk);
+    // cham128_keyschedule_dec(key, rk);
     // cyclecount = DWT_CYCCNT-oldcount;
 
 
@@ -69,7 +69,7 @@ int main(void)
     // send_USART_str(buffer);
 
     // oldcount = DWT_CYCCNT;
-    // speck64_decrypt(rk, out, in);
+    // cham128_decrypt(rk, out, in);
     // cyclecount = DWT_CYCCNT-oldcount;
 
     // sprintf(buffer, "cyc: %d", cyclecount); 

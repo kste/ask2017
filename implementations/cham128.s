@@ -40,304 +40,366 @@ cham128_encrypt:
     ldm r1, {r4-r7} //r1 now free to overwrite
     
     //Round 0
-    eor r4, r4, #2
-    eor r1, r8, r5, ror #30
-    add r4, r4, r1, ror #24
-    eor r5, r5, #4
+    ldmia r0!, {r8-r11}
+    eor r4, r4, #0
+    eor r1, r8, r5, ror #31
+    add r4, r4, r1
+    ror r4, r4, #24
+    eor r5, r4, #0
     eor r1, r9, r6, ror #24
-    add r5, r5, r1, ror #30
-    eor r6, r6, #6
-    eor r1, r8, r7, ror #30
-    add r6, r6, r1, ror #24
-    eor r7, r7, #8
-    eor r1, r9, r4, ror #24
-    add r7, r7, r1, ror #30
-    //Round 1
-    eor r4, r4, #2
-    eor r1, r8, r5, ror #30
-    add r4, r4, r1, ror #24
-    eor r5, r5, #4
-    eor r1, r9, r6, ror #24
-    add r5, r5, r1, ror #30
-    eor r6, r6, #6
-    eor r1, r8, r7, ror #30
-    add r6, r6, r1, ror #24
-    eor r7, r7, #8
-    eor r1, r9, r4, ror #24
-    add r7, r7, r1, ror #30
-    //Round 2
-    eor r4, r4, #2
-    eor r1, r8, r5, ror #30
-    add r4, r4, r1, ror #24
-    eor r5, r5, #4
-    eor r1, r9, r6, ror #24
-    add r5, r5, r1, ror #30
-    eor r6, r6, #6
-    eor r1, r8, r7, ror #30
-    add r6, r6, r1, ror #24
-    eor r7, r7, #8
-    eor r1, r9, r4, ror #24
-    add r7, r7, r1, ror #30
-    //Round 3
-    eor r4, r4, #2
-    eor r1, r8, r5, ror #30
-    add r4, r4, r1, ror #24
-    eor r5, r5, #4
-    eor r1, r9, r6, ror #24
-    add r5, r5, r1, ror #30
-    eor r6, r6, #6
-    eor r1, r8, r7, ror #30
-    add r6, r6, r1, ror #24
-    eor r7, r7, #8
-    eor r1, r9, r4, ror #24
-    add r7, r7, r1, ror #30
+    add r5, r5, r1
+    ror r5, r5, #31
+    eor r6, r6, #0
+    eor r1, r10, r6, ror #31
+    add r6, r6, r1
+    ror r6, r6, #24
+    eor r7, r7, #0
+    eor r1, r11, r4, ror #31
+    add r7, r7, r1
+    ror r7, r7, #24
     //Round 4
-    eor r4, r4, #2
-    eor r1, r8, r5, ror #30
-    add r4, r4, r1, ror #24
-    eor r5, r5, #4
+    ldmia r0!, {r8-r11}
+    eor r4, r4, #4
+    eor r1, r8, r5, ror #31
+    add r4, r4, r1
+    ror r4, r4, #24
+    eor r5, r4, #4
     eor r1, r9, r6, ror #24
-    add r5, r5, r1, ror #30
-    eor r6, r6, #6
-    eor r1, r8, r7, ror #30
-    add r6, r6, r1, ror #24
-    eor r7, r7, #8
-    eor r1, r9, r4, ror #24
-    add r7, r7, r1, ror #30
-    //Round 5
-    eor r4, r4, #2
-    eor r1, r8, r5, ror #30
-    add r4, r4, r1, ror #24
-    eor r5, r5, #4
-    eor r1, r9, r6, ror #24
-    add r5, r5, r1, ror #30
-    eor r6, r6, #6
-    eor r1, r8, r7, ror #30
-    add r6, r6, r1, ror #24
-    eor r7, r7, #8
-    eor r1, r9, r4, ror #24
-    add r7, r7, r1, ror #30
-    //Round 6
-    eor r4, r4, #2
-    eor r1, r8, r5, ror #30
-    add r4, r4, r1, ror #24
-    eor r5, r5, #4
-    eor r1, r9, r6, ror #24
-    add r5, r5, r1, ror #30
-    eor r6, r6, #6
-    eor r1, r8, r7, ror #30
-    add r6, r6, r1, ror #24
-    eor r7, r7, #8
-    eor r1, r9, r4, ror #24
-    add r7, r7, r1, ror #30
-    //Round 7
-    eor r4, r4, #2
-    eor r1, r8, r5, ror #30
-    add r4, r4, r1, ror #24
-    eor r5, r5, #4
-    eor r1, r9, r6, ror #24
-    add r5, r5, r1, ror #30
-    eor r6, r6, #6
-    eor r1, r8, r7, ror #30
-    add r6, r6, r1, ror #24
-    eor r7, r7, #8
-    eor r1, r9, r4, ror #24
-    add r7, r7, r1, ror #30
+    add r5, r5, r1
+    ror r5, r5, #31
+    eor r6, r6, #4
+    eor r1, r10, r6, ror #31
+    add r6, r6, r1
+    ror r6, r6, #24
+    eor r7, r7, #4
+    eor r1, r11, r4, ror #31
+    add r7, r7, r1
+    ror r7, r7, #24
     //Round 8
-    eor r4, r4, #2
-    eor r1, r8, r5, ror #30
-    add r4, r4, r1, ror #24
-    eor r5, r5, #4
+    ldmia r0!, {r8-r11}
+    eor r4, r4, #8
+    eor r1, r8, r5, ror #31
+    add r4, r4, r1
+    ror r4, r4, #24
+    eor r5, r4, #8
     eor r1, r9, r6, ror #24
-    add r5, r5, r1, ror #30
-    eor r6, r6, #6
-    eor r1, r8, r7, ror #30
-    add r6, r6, r1, ror #24
+    add r5, r5, r1
+    ror r5, r5, #31
+    eor r6, r6, #8
+    eor r1, r10, r6, ror #31
+    add r6, r6, r1
+    ror r6, r6, #24
     eor r7, r7, #8
-    eor r1, r9, r4, ror #24
-    add r7, r7, r1, ror #30
-    //Round 9
-    eor r4, r4, #2
-    eor r1, r8, r5, ror #30
-    add r4, r4, r1, ror #24
-    eor r5, r5, #4
-    eor r1, r9, r6, ror #24
-    add r5, r5, r1, ror #30
-    eor r6, r6, #6
-    eor r1, r8, r7, ror #30
-    add r6, r6, r1, ror #24
-    eor r7, r7, #8
-    eor r1, r9, r4, ror #24
-    add r7, r7, r1, ror #30
-    //Round 10
-    eor r4, r4, #2
-    eor r1, r8, r5, ror #30
-    add r4, r4, r1, ror #24
-    eor r5, r5, #4
-    eor r1, r9, r6, ror #24
-    add r5, r5, r1, ror #30
-    eor r6, r6, #6
-    eor r1, r8, r7, ror #30
-    add r6, r6, r1, ror #24
-    eor r7, r7, #8
-    eor r1, r9, r4, ror #24
-    add r7, r7, r1, ror #30
-    //Round 11
-    eor r4, r4, #2
-    eor r1, r8, r5, ror #30
-    add r4, r4, r1, ror #24
-    eor r5, r5, #4
-    eor r1, r9, r6, ror #24
-    add r5, r5, r1, ror #30
-    eor r6, r6, #6
-    eor r1, r8, r7, ror #30
-    add r6, r6, r1, ror #24
-    eor r7, r7, #8
-    eor r1, r9, r4, ror #24
-    add r7, r7, r1, ror #30
+    eor r1, r11, r4, ror #31
+    add r7, r7, r1
+    ror r7, r7, #24
     //Round 12
-    eor r4, r4, #2
-    eor r1, r8, r5, ror #30
-    add r4, r4, r1, ror #24
-    eor r5, r5, #4
+    ldmia r0!, {r8-r11}
+    eor r4, r4, #12
+    eor r1, r8, r5, ror #31
+    add r4, r4, r1
+    ror r4, r4, #24
+    eor r5, r4, #12
     eor r1, r9, r6, ror #24
-    add r5, r5, r1, ror #30
-    eor r6, r6, #6
-    eor r1, r8, r7, ror #30
-    add r6, r6, r1, ror #24
-    eor r7, r7, #8
-    eor r1, r9, r4, ror #24
-    add r7, r7, r1, ror #30
-    //Round 13
-    eor r4, r4, #2
-    eor r1, r8, r5, ror #30
-    add r4, r4, r1, ror #24
-    eor r5, r5, #4
-    eor r1, r9, r6, ror #24
-    add r5, r5, r1, ror #30
-    eor r6, r6, #6
-    eor r1, r8, r7, ror #30
-    add r6, r6, r1, ror #24
-    eor r7, r7, #8
-    eor r1, r9, r4, ror #24
-    add r7, r7, r1, ror #30
-    //Round 14
-    eor r4, r4, #2
-    eor r1, r8, r5, ror #30
-    add r4, r4, r1, ror #24
-    eor r5, r5, #4
-    eor r1, r9, r6, ror #24
-    add r5, r5, r1, ror #30
-    eor r6, r6, #6
-    eor r1, r8, r7, ror #30
-    add r6, r6, r1, ror #24
-    eor r7, r7, #8
-    eor r1, r9, r4, ror #24
-    add r7, r7, r1, ror #30
-    //Round 15
-    eor r4, r4, #2
-    eor r1, r8, r5, ror #30
-    add r4, r4, r1, ror #24
-    eor r5, r5, #4
-    eor r1, r9, r6, ror #24
-    add r5, r5, r1, ror #30
-    eor r6, r6, #6
-    eor r1, r8, r7, ror #30
-    add r6, r6, r1, ror #24
-    eor r7, r7, #8
-    eor r1, r9, r4, ror #24
-    add r7, r7, r1, ror #30
+    add r5, r5, r1
+    ror r5, r5, #31
+    eor r6, r6, #12
+    eor r1, r10, r6, ror #31
+    add r6, r6, r1
+    ror r6, r6, #24
+    eor r7, r7, #12
+    eor r1, r11, r4, ror #31
+    add r7, r7, r1
+    ror r7, r7, #24
     //Round 16
-    eor r4, r4, #2
-    eor r1, r8, r5, ror #30
-    add r4, r4, r1, ror #24
-    eor r5, r5, #4
+    ldmia r0!, {r8-r11}
+    eor r4, r4, #16
+    eor r1, r8, r5, ror #31
+    add r4, r4, r1
+    ror r4, r4, #24
+    eor r5, r4, #16
     eor r1, r9, r6, ror #24
-    add r5, r5, r1, ror #30
-    eor r6, r6, #6
-    eor r1, r8, r7, ror #30
-    add r6, r6, r1, ror #24
-    eor r7, r7, #8
-    eor r1, r9, r4, ror #24
-    add r7, r7, r1, ror #30
-    //Round 17
-    eor r4, r4, #2
-    eor r1, r8, r5, ror #30
-    add r4, r4, r1, ror #24
-    eor r5, r5, #4
-    eor r1, r9, r6, ror #24
-    add r5, r5, r1, ror #30
-    eor r6, r6, #6
-    eor r1, r8, r7, ror #30
-    add r6, r6, r1, ror #24
-    eor r7, r7, #8
-    eor r1, r9, r4, ror #24
-    add r7, r7, r1, ror #30
-    //Round 18
-    eor r4, r4, #2
-    eor r1, r8, r5, ror #30
-    add r4, r4, r1, ror #24
-    eor r5, r5, #4
-    eor r1, r9, r6, ror #24
-    add r5, r5, r1, ror #30
-    eor r6, r6, #6
-    eor r1, r8, r7, ror #30
-    add r6, r6, r1, ror #24
-    eor r7, r7, #8
-    eor r1, r9, r4, ror #24
-    add r7, r7, r1, ror #30
-    //Round 19
-    eor r4, r4, #2
-    eor r1, r8, r5, ror #30
-    add r4, r4, r1, ror #24
-    eor r5, r5, #4
-    eor r1, r9, r6, ror #24
-    add r5, r5, r1, ror #30
-    eor r6, r6, #6
-    eor r1, r8, r7, ror #30
-    add r6, r6, r1, ror #24
-    eor r7, r7, #8
-    eor r1, r9, r4, ror #24
-    add r7, r7, r1, ror #30
+    add r5, r5, r1
+    ror r5, r5, #31
+    eor r6, r6, #16
+    eor r1, r10, r6, ror #31
+    add r6, r6, r1
+    ror r6, r6, #24
+    eor r7, r7, #16
+    eor r1, r11, r4, ror #31
+    add r7, r7, r1
+    ror r7, r7, #24
     //Round 20
-    eor r4, r4, #2
-    eor r1, r8, r5, ror #30
-    add r4, r4, r1, ror #24
-    eor r5, r5, #4
+    ldmia r0!, {r8-r11}
+    eor r4, r4, #20
+    eor r1, r8, r5, ror #31
+    add r4, r4, r1
+    ror r4, r4, #24
+    eor r5, r4, #20
     eor r1, r9, r6, ror #24
-    add r5, r5, r1, ror #30
-    eor r6, r6, #6
-    eor r1, r8, r7, ror #30
-    add r6, r6, r1, ror #24
-    eor r7, r7, #8
-    eor r1, r9, r4, ror #24
-    add r7, r7, r1, ror #30
-    //Round 21
-    eor r4, r4, #2
-    eor r1, r8, r5, ror #30
-    add r4, r4, r1, ror #24
-    eor r5, r5, #4
+    add r5, r5, r1
+    ror r5, r5, #31
+    eor r6, r6, #20
+    eor r1, r10, r6, ror #31
+    add r6, r6, r1
+    ror r6, r6, #24
+    eor r7, r7, #20
+    eor r1, r11, r4, ror #31
+    add r7, r7, r1
+    ror r7, r7, #24
+    //Round 24
+    ldmia r0!, {r8-r11}
+    eor r4, r4, #24
+    eor r1, r8, r5, ror #31
+    add r4, r4, r1
+    ror r4, r4, #24
+    eor r5, r4, #24
     eor r1, r9, r6, ror #24
-    add r5, r5, r1, ror #30
-    eor r6, r6, #6
-    eor r1, r8, r7, ror #30
-    add r6, r6, r1, ror #24
-    eor r7, r7, #8
-    eor r1, r9, r4, ror #24
-    add r7, r7, r1, ror #30
-    //Round 22
-    eor r4, r4, #2
-    eor r1, r8, r5, ror #30
-    add r4, r4, r1, ror #24
-    eor r5, r5, #4
+    add r5, r5, r1
+    ror r5, r5, #31
+    eor r6, r6, #24
+    eor r1, r10, r6, ror #31
+    add r6, r6, r1
+    ror r6, r6, #24
+    eor r7, r7, #24
+    eor r1, r11, r4, ror #31
+    add r7, r7, r1
+    ror r7, r7, #24
+    //Round 28
+    ldmia r0!, {r8-r11}
+    eor r4, r4, #28
+    eor r1, r8, r5, ror #31
+    add r4, r4, r1
+    ror r4, r4, #24
+    eor r5, r4, #28
     eor r1, r9, r6, ror #24
-    add r5, r5, r1, ror #30
-    eor r6, r6, #6
-    eor r1, r8, r7, ror #30
-    add r6, r6, r1, ror #24
-    eor r7, r7, #8
-    eor r1, r9, r4, ror #24
-    add r7, r7, r1, ror #30
+    add r5, r5, r1
+    ror r5, r5, #31
+    eor r6, r6, #28
+    eor r1, r10, r6, ror #31
+    add r6, r6, r1
+    ror r6, r6, #24
+    eor r7, r7, #28
+    eor r1, r11, r4, ror #31
+    add r7, r7, r1
+    ror r7, r7, #24
+    //Round 32
+    ldmia r0!, {r8-r11}
+    eor r4, r4, #32
+    eor r1, r8, r5, ror #31
+    add r4, r4, r1
+    ror r4, r4, #24
+    eor r5, r4, #32
+    eor r1, r9, r6, ror #24
+    add r5, r5, r1
+    ror r5, r5, #31
+    eor r6, r6, #32
+    eor r1, r10, r6, ror #31
+    add r6, r6, r1
+    ror r6, r6, #24
+    eor r7, r7, #32
+    eor r1, r11, r4, ror #31
+    add r7, r7, r1
+    ror r7, r7, #24
+    //Round 36
+    ldmia r0!, {r8-r11}
+    eor r4, r4, #36
+    eor r1, r8, r5, ror #31
+    add r4, r4, r1
+    ror r4, r4, #24
+    eor r5, r4, #36
+    eor r1, r9, r6, ror #24
+    add r5, r5, r1
+    ror r5, r5, #31
+    eor r6, r6, #36
+    eor r1, r10, r6, ror #31
+    add r6, r6, r1
+    ror r6, r6, #24
+    eor r7, r7, #36
+    eor r1, r11, r4, ror #31
+    add r7, r7, r1
+    ror r7, r7, #24
+    //Round 40
+    ldmia r0!, {r8-r11}
+    eor r4, r4, #40
+    eor r1, r8, r5, ror #31
+    add r4, r4, r1
+    ror r4, r4, #24
+    eor r5, r4, #40
+    eor r1, r9, r6, ror #24
+    add r5, r5, r1
+    ror r5, r5, #31
+    eor r6, r6, #40
+    eor r1, r10, r6, ror #31
+    add r6, r6, r1
+    ror r6, r6, #24
+    eor r7, r7, #40
+    eor r1, r11, r4, ror #31
+    add r7, r7, r1
+    ror r7, r7, #24
+    //Round 44
+    ldmia r0!, {r8-r11}
+    eor r4, r4, #44
+    eor r1, r8, r5, ror #31
+    add r4, r4, r1
+    ror r4, r4, #24
+    eor r5, r4, #44
+    eor r1, r9, r6, ror #24
+    add r5, r5, r1
+    ror r5, r5, #31
+    eor r6, r6, #44
+    eor r1, r10, r6, ror #31
+    add r6, r6, r1
+    ror r6, r6, #24
+    eor r7, r7, #44
+    eor r1, r11, r4, ror #31
+    add r7, r7, r1
+    ror r7, r7, #24
+    //Round 48
+    ldmia r0!, {r8-r11}
+    eor r4, r4, #48
+    eor r1, r8, r5, ror #31
+    add r4, r4, r1
+    ror r4, r4, #24
+    eor r5, r4, #48
+    eor r1, r9, r6, ror #24
+    add r5, r5, r1
+    ror r5, r5, #31
+    eor r6, r6, #48
+    eor r1, r10, r6, ror #31
+    add r6, r6, r1
+    ror r6, r6, #24
+    eor r7, r7, #48
+    eor r1, r11, r4, ror #31
+    add r7, r7, r1
+    ror r7, r7, #24
+    //Round 52
+    ldmia r0!, {r8-r11}
+    eor r4, r4, #52
+    eor r1, r8, r5, ror #31
+    add r4, r4, r1
+    ror r4, r4, #24
+    eor r5, r4, #52
+    eor r1, r9, r6, ror #24
+    add r5, r5, r1
+    ror r5, r5, #31
+    eor r6, r6, #52
+    eor r1, r10, r6, ror #31
+    add r6, r6, r1
+    ror r6, r6, #24
+    eor r7, r7, #52
+    eor r1, r11, r4, ror #31
+    add r7, r7, r1
+    ror r7, r7, #24
+    //Round 56
+    ldmia r0!, {r8-r11}
+    eor r4, r4, #56
+    eor r1, r8, r5, ror #31
+    add r4, r4, r1
+    ror r4, r4, #24
+    eor r5, r4, #56
+    eor r1, r9, r6, ror #24
+    add r5, r5, r1
+    ror r5, r5, #31
+    eor r6, r6, #56
+    eor r1, r10, r6, ror #31
+    add r6, r6, r1
+    ror r6, r6, #24
+    eor r7, r7, #56
+    eor r1, r11, r4, ror #31
+    add r7, r7, r1
+    ror r7, r7, #24
+    //Round 60
+    ldmia r0!, {r8-r11}
+    eor r4, r4, #60
+    eor r1, r8, r5, ror #31
+    add r4, r4, r1
+    ror r4, r4, #24
+    eor r5, r4, #60
+    eor r1, r9, r6, ror #24
+    add r5, r5, r1
+    ror r5, r5, #31
+    eor r6, r6, #60
+    eor r1, r10, r6, ror #31
+    add r6, r6, r1
+    ror r6, r6, #24
+    eor r7, r7, #60
+    eor r1, r11, r4, ror #31
+    add r7, r7, r1
+    ror r7, r7, #24
+    //Round 64
+    ldmia r0!, {r8-r11}
+    eor r4, r4, #64
+    eor r1, r8, r5, ror #31
+    add r4, r4, r1
+    ror r4, r4, #24
+    eor r5, r4, #64
+    eor r1, r9, r6, ror #24
+    add r5, r5, r1
+    ror r5, r5, #31
+    eor r6, r6, #64
+    eor r1, r10, r6, ror #31
+    add r6, r6, r1
+    ror r6, r6, #24
+    eor r7, r7, #64
+    eor r1, r11, r4, ror #31
+    add r7, r7, r1
+    ror r7, r7, #24
+    //Round 68
+    ldmia r0!, {r8-r11}
+    eor r4, r4, #68
+    eor r1, r8, r5, ror #31
+    add r4, r4, r1
+    ror r4, r4, #24
+    eor r5, r4, #68
+    eor r1, r9, r6, ror #24
+    add r5, r5, r1
+    ror r5, r5, #31
+    eor r6, r6, #68
+    eor r1, r10, r6, ror #31
+    add r6, r6, r1
+    ror r6, r6, #24
+    eor r7, r7, #68
+    eor r1, r11, r4, ror #31
+    add r7, r7, r1
+    ror r7, r7, #24
+    //Round 72
+    ldmia r0!, {r8-r11}
+    eor r4, r4, #72
+    eor r1, r8, r5, ror #31
+    add r4, r4, r1
+    ror r4, r4, #24
+    eor r5, r4, #72
+    eor r1, r9, r6, ror #24
+    add r5, r5, r1
+    ror r5, r5, #31
+    eor r6, r6, #72
+    eor r1, r10, r6, ror #31
+    add r6, r6, r1
+    ror r6, r6, #24
+    eor r7, r7, #72
+    eor r1, r11, r4, ror #31
+    add r7, r7, r1
+    ror r7, r7, #24
+    //Round 76
+    ldmia r0!, {r8-r11}
+    eor r4, r4, #76
+    eor r1, r8, r5, ror #31
+    add r4, r4, r1
+    ror r4, r4, #24
+    eor r5, r4, #76
+    eor r1, r9, r6, ror #24
+    add r5, r5, r1
+    ror r5, r5, #31
+    eor r6, r6, #76
+    eor r1, r10, r6, ror #31
+    add r6, r6, r1
+    ror r6, r6, #24
+    eor r7, r7, #76
+    eor r1, r11, r4, ror #31
+    add r7, r7, r1
+    ror r7, r7, #24
+
 
 
 
